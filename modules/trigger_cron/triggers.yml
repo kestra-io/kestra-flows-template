@@ -1,0 +1,5 @@
+triggers:
+  - id: ${cron-name}
+    type: io.kestra.core.models.triggers.types.Schedule
+    cron: "${cron-expression}"
+    lateMaximumDelay: "${late-maximum-delay}"

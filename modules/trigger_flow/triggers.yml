@@ -1,0 +1,10 @@
+triggers:
+  - id: listenFlow
+    type: io.kestra.core.models.triggers.types.Flow
+    conditions:
+      - type: io.kestra.core.models.conditions.types.ExecutionFlowCondition
+        namespace: ${parent-flow-namespace}
+        flowId: ${parent-flow-id}
+      - type: io.kestra.core.models.conditions.types.ExecutionStatusCondition
+        in:
+          - SUCCESS
