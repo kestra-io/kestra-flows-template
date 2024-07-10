@@ -1,6 +1,7 @@
 locals {
-  namespace_jaffle   = "prod.dbt.jaffle_shop"
-  dbt_profile_jaffle = "jaffle_shop"
+  namespace_jaffle       = "prod.dbt.jaffle_shop"
+  dbt_profile_jaffle     = "jaffle_shop"
+  github_repo_url_jaffle = "https://github.com/dbt-labs/jaffle-shop-classic"
 }
 
 ######### Jaffle Shop Classic Orders #########
@@ -18,7 +19,7 @@ module "dbt_run_jaffle_shop_orders" {
   description     = "Run orders model from dbt project jaffle-shop-classic"
   namespace       = local.namespace_jaffle
   priority        = "high"
-  github_repo_url = "https://github.com/dbt-labs/jaffle-shop-classic"
+  github_repo_url = local.github_repo_url_jaffle
   git_branch      = "main"
   dbt_commands = [
     "dbt seed",
@@ -40,7 +41,7 @@ module "dbt_run_jaffle_shop_customers" {
   description     = "Run customers model from dbt project jaffle-shop-classic"
   namespace       = local.namespace_jaffle
   priority        = "high"
-  github_repo_url = "https://github.com/dbt-labs/jaffle-shop-classic"
+  github_repo_url = local.github_repo_url_jaffle
   git_branch      = "main"
   dbt_commands = [
     "dbt seed",
