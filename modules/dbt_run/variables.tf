@@ -37,6 +37,12 @@ variable "github_repo_url" {
   description = "Github repository to clone"
 }
 
+variable "git_branch" {
+  type        = string
+  description = "Branch to checkout"
+  default     = "main"
+}
+
 variable "dbt_commands" {
   description = "dbt commands to run"
   type        = list(string)

@@ -10,6 +10,7 @@ resource "kestra_flow" "dbt_run" {
     }),
     templatefile("${path.module}/tasks.yml", {
       github-repo-url = var.github_repo_url
+      git-branch      = var.git_branch
       dbt-commands    = var.dbt_commands
       dbt-max-attempt = var.dbt_max_retry_attempt
     }),

@@ -4,8 +4,8 @@ tasks:
     tasks:
       - id: clone_repository
         type: io.kestra.plugin.git.Clone
-        url: https://github.com/kestra-io/dbt-example
-        branch: master
+        url: ${github-repo-url}
+        branch: ${git-branch}
 
       - id: dbt_build
         type: io.kestra.plugin.dbt.cli.DbtCLI
