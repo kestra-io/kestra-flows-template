@@ -5,10 +5,11 @@ resource "kestra_flow" "dbt_run" {
     yamlencode({
       id          = var.flow_id
       namespace   = var.namespace
-      labels      = var.priority != null ? merge(var.labels, { priority = var.priority }) : var.labels
       description = var.description
+      disabled    = var.disabled
     }),
     templatefile("${path.module}/tasks.yml", {
+      labels          = var.labels
       github-repo-url = var.github_repo_url
       git-branch      = var.git_branch
       dbt-command     = var.dbt_command

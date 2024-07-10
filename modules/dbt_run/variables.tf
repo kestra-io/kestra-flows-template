@@ -14,6 +14,12 @@ variable "namespace" {
   description = "Namespace of the flow"
 }
 
+variable "disabled" {
+  type        = bool
+  default     = false
+  description = "Whether the flow is disabled"
+}
+
 variable "labels" {
   type        = map(string)
   description = "Labels to apply to the flow"

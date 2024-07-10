@@ -1,3 +1,11 @@
+%{ if length(labels) > 0 }
+labels:
+%{ for key, value in labels }
+  - key: ${key}
+    value: ${value}
+%{ endfor }
+%{ endif }
+
 tasks:
   - id: dbt
     type: io.kestra.core.tasks.flows.WorkingDirectory
@@ -7,27 +15,34 @@ tasks:
         url: ${github-repo-url}
         branch: ${git-branch}
 
+      - id: dbtProfile
+        type: io.kestra.core.tasks.storages.LocalFiles
+        inputs:
+          profiles.yml: |
+            my_dbt_project:
+              outputs:
+                dev:
+                  type: duckdb
+                  path: dbt.duckdb
+                  extensions:
+                    - parquet
+                  fixed_retries: 1
+                  threads: 16
+                  timeout_seconds: 300
+              target: dev
+
       - id: dbt_build
         type: io.kestra.plugin.dbt.cli.DbtCLI
         retry:
+          behavior: RETRY_FAILED_TASK
           maxAttempt: ${dbt-max-attempt}
           type: constant
           interval: PT5M
           warningOnRetry: true
+        docker:
+          pullPolicy: IF_NOT_PRESENT
         taskRunner:
           type: io.kestra.plugin.scripts.runner.docker.Docker
         containerImage: ghcr.io/kestra-io/dbt-duckdb:latest
         commands:
           - ${dbt-command}
-        profiles: |
-        my_dbt_project:
-          outputs:
-            dev:
-              type: duckdb
-              path: dbt.duckdb
-              extensions:
-                - parquet
-              fixed_retries: 1
-              threads: 16
-              timeout_seconds: 300
-          target: dev
