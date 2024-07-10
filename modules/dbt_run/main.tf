@@ -12,7 +12,8 @@ resource "kestra_flow" "dbt_run" {
       labels          = var.labels
       github-repo-url = var.github_repo_url
       git-branch      = var.git_branch
-      dbt-command     = var.dbt_command
+      dbt-commands    = var.dbt_commands
+      dbt-profile     = var.dbt_profile_name
       dbt-max-attempt = var.dbt_max_retry_attempt
     }),
     var.trigger,

@@ -1,5 +1,6 @@
 locals {
-  namespace = "prod.dbt.jaffle_shop"
+  namespace        = "prod.dbt.jaffle_shop"
+  dbt_profile_name = "jaffle_shop"
 }
 
 ######### Jaffle Shop Classic Orders #########
@@ -19,8 +20,12 @@ module "dbt_run_jaffle_shop_classic_orders" {
   priority        = "high"
   github_repo_url = "https://github.com/dbt-labs/jaffle-shop-classic"
   git_branch      = "main"
-  dbt_command     = "dbt build -s +orders"
-  trigger         = module.trigger_dbt_run_jaffle_shop_classic_orders.trigger_content
+  dbt_commands = [
+    "dbt seed",
+    "dbt run -s +orders",
+  ]
+  dbt_profile_name = local.dbt_profile_name
+  trigger          = module.trigger_dbt_run_jaffle_shop_classic_orders.trigger_content
 }
 
 ######### Jaffle Shop Classic Customers #########
@@ -37,6 +42,10 @@ module "dbt_run_jaffle_shop_classic_customers" {
   priority        = "high"
   github_repo_url = "https://github.com/dbt-labs/jaffle-shop-classic"
   git_branch      = "main"
-  dbt_command     = "dbt build -s +customers"
-  trigger         = module.trigger_dbt_run_jaffle_shop_classic_customers.trigger_content
+  dbt_commands = [
+    "dbt seed",
+    "dbt run -s +customers",
+  ]
+  dbt_profile_name = "jaffle_shop"
+  trigger          = module.trigger_dbt_run_jaffle_shop_classic_customers.trigger_content
 }

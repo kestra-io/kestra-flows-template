@@ -49,9 +49,15 @@ variable "git_branch" {
   default     = "main"
 }
 
-variable "dbt_command" {
-  description = "dbt command to run"
+variable "dbt_profile_name" {
   type        = string
+  description = "Name of the dbt profile to use"
+  default     = "default"
+}
+
+variable "dbt_commands" {
+  description = "dbt commands to run"
+  type        = list(string)
 }
 
 variable "dbt_max_retry_attempt" {
