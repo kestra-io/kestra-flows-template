@@ -1,0 +1,29 @@
+description: ${description}
+
+tasks:
+  - id: terraform_apply
+    type: io.kestra.core.tasks.flows.WorkingDirectory
+    tasks:
+      - id: clone-repository
+        type: io.kestra.plugin.git.Clone
+        url: https://github.com/kestra-io/kestra-flows-template.git
+        branch: main
+
+      - id: variables
+        type: io.kestra.core.tasks.storages.LocalFiles
+        inputs:
+          # Here we define the variables that will be used by Terraform
+          # During the apply :
+          # - kestra_url will be used to configure the Kestra URL
+          # => http://localhost:8080 as we are running Kestra locally
+          ci.tfvars: |
+            kestra_url = "http://localhost:8080"
+
+      - id: terraform
+        type: io.kestra.plugin.terraform.cli.TerraformCLI
+        docker: {}
+        beforeCommands:
+          - cd environment/production
+          - terraform init
+        commands:
+          - terraform apply -var-file=../../ci.tfvars -auto-approve
