@@ -14,6 +14,12 @@ variable "namespace" {
   description = "Namespace of the flow"
 }
 
+variable "disabled" {
+  type        = bool
+  default     = false
+  description = "Whether the flow is disabled"
+}
+
 variable "labels" {
   type        = map(string)
   description = "Labels to apply to the flow"
@@ -35,6 +41,18 @@ variable "trigger" {
 variable "github_repo_url" {
   type        = string
   description = "Github repository to clone"
+}
+
+variable "git_branch" {
+  type        = string
+  description = "Branch to checkout"
+  default     = "main"
+}
+
+variable "dbt_profile_name" {
+  type        = string
+  description = "Name of the dbt profile to use"
+  default     = "default"
 }
 
 variable "dbt_commands" {

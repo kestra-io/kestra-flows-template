@@ -11,6 +11,7 @@ module "kestra_purge_db" {
   postgres_database        = "kestra"
   postgres_password_secret = var.postgres_password_secret
   postgres_host            = var.postgres_host
+  show_result_in_logs      = false
   sql_query                = "DELETE FROM public.logs WHERE timestamp < NOW() - INTERVAL '${var.retention_months} month'"
   trigger                  = var.trigger
 }
