@@ -1,4 +1,5 @@
 description: ${description}
+disabled: false
 
 tasks:
   - id: terraform_apply
@@ -21,7 +22,8 @@ tasks:
 
       - id: terraform
         type: io.kestra.plugin.terraform.cli.TerraformCLI
-        docker: {}
+        docker:
+          pullPolicy: IF_NOT_PRESENT
         beforeCommands:
           - cd environment/production
           - terraform init
