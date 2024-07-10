@@ -1,0 +1,9 @@
+# Terraform
+.cloud/terraform/.terraform
+.cloud/terraform/*.lock.hcl
+.cloud/terraform/*.tfstate*
+.terraform
+*.tfstate*
+
+# Python
+.venv
