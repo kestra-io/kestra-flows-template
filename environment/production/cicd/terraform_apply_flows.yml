@@ -23,6 +23,7 @@ tasks:
       - id: terraform
         type: io.kestra.plugin.terraform.cli.TerraformCLI
         docker:
+          image: hashicorp/terraform:1.6.0
           pullPolicy: IF_NOT_PRESENT
         beforeCommands:
           - cd environment/production
