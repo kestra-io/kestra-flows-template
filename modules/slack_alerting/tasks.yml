@@ -1,0 +1,26 @@
+description: "General alerting flow which triggers Slack notification if a flow within ${namespace-prefix} fails."
+tasks:
+  - id: send
+    type: io.kestra.plugin.notifications.slack.SlackExecution
+    url: "${namespace-prefix}"
+    channel: "${slack-channel}"
+    executionId: "{{trigger.executionId}}"
+
+triggers:
+  - id: listen
+    type: io.kestra.core.models.triggers.types.Flow
+    conditions:
+      - type: io.kestra.core.models.conditions.types.ExecutionStatusCondition
+        in:
+          - FAILED
+          - WARNING
+      - type: io.kestra.core.models.conditions.types.ExecutionNamespaceCondition
+        namespace: ${namespace-prefix}
+        comparison: PREFIX
+      - type: io.kestra.core.models.conditions.types.NotCondition
+        conditions:
+          %{ for flow in silent-flows}
+          - type: io.kestra.core.models.conditions.types.ExecutionFlowCondition
+            namespace: ${flow.namespace}
+            flowId: "${flow.flow_id}"
+          %{ endfor }

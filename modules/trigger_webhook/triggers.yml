@@ -1,0 +1,4 @@
+triggers:
+  - id: ${webhook-name}
+    type: io.kestra.core.models.triggers.types.Webhook
+    key: ${key}
