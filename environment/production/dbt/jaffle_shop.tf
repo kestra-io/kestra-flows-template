@@ -1,6 +1,6 @@
 locals {
-  namespace        = "prod.dbt.jaffle_shop"
-  dbt_profile_name = "jaffle_shop"
+  namespace_jaffle   = "prod.dbt.jaffle_shop"
+  dbt_profile_jaffle = "jaffle_shop"
 }
 
 ######### Jaffle Shop Classic Orders #########
@@ -16,7 +16,7 @@ module "dbt_run_jaffle_shop_orders" {
   source          = "../../../modules/dbt_run"
   flow_id         = "dbt_run_jaffle_shop_orders"
   description     = "Run orders model from dbt project jaffle-shop-classic"
-  namespace       = local.namespace
+  namespace       = local.namespace_jaffle
   priority        = "high"
   github_repo_url = "https://github.com/dbt-labs/jaffle-shop-classic"
   git_branch      = "main"
@@ -24,7 +24,7 @@ module "dbt_run_jaffle_shop_orders" {
     "dbt seed",
     "dbt run -s +orders",
   ]
-  dbt_profile_name = local.dbt_profile_name
+  dbt_profile_name = local.dbt_profile_jaffle
   trigger          = module.trigger_dbt_run_jaffle_shop_orders.trigger_content
 }
 
@@ -38,7 +38,7 @@ module "dbt_run_jaffle_shop_customers" {
   source          = "../../../modules/dbt_run"
   flow_id         = "dbt_run_jaffle_shop_customers"
   description     = "Run customers model from dbt project jaffle-shop-classic"
-  namespace       = local.namespace
+  namespace       = local.namespace_jaffle
   priority        = "high"
   github_repo_url = "https://github.com/dbt-labs/jaffle-shop-classic"
   git_branch      = "main"
@@ -46,6 +46,6 @@ module "dbt_run_jaffle_shop_customers" {
     "dbt seed",
     "dbt run -s +customers",
   ]
-  dbt_profile_name = "jaffle_shop"
+  dbt_profile_name = local.dbt_profile_jaffle
   trigger          = module.trigger_dbt_run_jaffle_shop_customers.trigger_content
 }
