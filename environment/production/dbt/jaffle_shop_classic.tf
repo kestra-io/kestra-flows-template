@@ -19,7 +19,7 @@ module "dbt_run_jaffle_shop_classic_orders" {
   priority        = "high"
   github_repo_url = "https://github.com/dbt-labs/jaffle-shop-classic"
   git_branch      = "main"
-  dbt_commands    = ["dbt build -s +orders"]
+  dbt_command     = "dbt build -s +orders"
   trigger         = module.trigger_dbt_run_jaffle_shop_classic_orders.trigger_content
 }
 
@@ -37,6 +37,6 @@ module "dbt_run_jaffle_shop_classic_customers" {
   priority        = "high"
   github_repo_url = "https://github.com/dbt-labs/jaffle-shop-classic"
   git_branch      = "main"
-  dbt_commands    = ["dbt build -s +customers"]
+  dbt_command     = "dbt build -s +customers"
   trigger         = module.trigger_dbt_run_jaffle_shop_classic_customers.trigger_content
 }
