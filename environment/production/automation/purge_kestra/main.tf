@@ -9,7 +9,7 @@ module "purge_kestra_db" {
   source                   = "../../../../modules/purge_kestra"
   flow_id                  = "kestra_purge"
   namespace                = "prod.automation"
-  postgres_host            = "localhost" # Localhost as running in docker-compose
-  postgres_password_secret = "k3str4"    # See docker-compose.yml
+  postgres_host            = "postgres:5432" # Localhost as running in docker-compose
+  postgres_password_secret = "k3str4"        # See docker-compose.yml
   retention_months         = 2
 }

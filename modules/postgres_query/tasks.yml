@@ -7,16 +7,20 @@ tasks:
     type: io.kestra.plugin.jdbc.postgresql.Query
     url: jdbc:postgresql://${postgres-host}/${postgres-database}
     username: ${postgres-user}
-    password: ${postgres-secret-password}}
+    password: ${postgres-secret-password}
     sql: ${sql-query}
     fetch: true
 
   - id: show-result
     type: io.kestra.core.tasks.log.Log
     message: >
-      {% for row in outputs.query_data.rows %}
-        {%- for key in row.keySet() -%}
-          {{key}} : {{row.get(key)}} |
-        {%- endfor -%}
-        \n
-      {% endfor %}"
+      {% if outputs.query_data.rows is defined %}
+        {% for row in outputs.query_data.rows %}
+          {%- for key in row.keySet() -%}
+            {{key}} : {{row.get(key)}} |
+          {%- endfor -%}
+          \n
+        {% endfor %}
+      {% else %}
+        No data to show
+      {% endif %}
