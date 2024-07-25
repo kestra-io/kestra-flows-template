@@ -11,7 +11,6 @@ tasks:
     sql: ${sql-query}
     fetch: true
 
-{% if outputs.query_data.rows.size() > 0 %}
   - id: show-result
     type: io.kestra.core.tasks.log.Log
     message: >
@@ -21,4 +20,3 @@ tasks:
         {%- endfor -%}
         \n
       {% endfor %}"
-{% endif %}

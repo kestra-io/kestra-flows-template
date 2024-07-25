@@ -1,0 +1,41 @@
+inputs:
+  - id: columns_to_keep
+    type: ARRAY
+    itemType: STRING
+    defaults:
+      - brand
+      - price
+
+tasks:
+  - id: extract
+    type: io.kestra.plugin.core.http.Download
+    uri: https://dummyjson.com/products
+
+  - id: transform
+    type: io.kestra.plugin.scripts.python.Commands
+    docker:
+      pullPolicy: IF_NOT_PRESENT
+    containerImage: python:3.11-alpine
+    inputFiles:
+      data.json: "{{ outputs.extract.uri }}"
+    outputFiles:
+      - "*.json"
+    namespaceFiles:
+      enabled: true
+    commands:
+      - python ${python-file-uri}
+    env:
+      COLUMNS_TO_KEEP: "{{ inputs.columns_to_keep }}"
+
+  - id: query
+    type: io.kestra.plugin.jdbc.duckdb.Query
+    inputFiles:
+      products.json: "{{ outputs.transform.outputFiles['products.json'] }}"
+    sql: |
+      INSTALL json;
+      LOAD json;
+      SELECT brand, round(avg(price), 2) as avg_price
+      FROM read_json_auto('{{ workingDir }}/products.json')
+      GROUP BY brand
+      ORDER BY avg_price DESC;
+    store: true

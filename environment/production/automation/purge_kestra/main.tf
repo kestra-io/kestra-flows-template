@@ -6,11 +6,10 @@ module "trigger_purge" {
 }
 
 module "purge_kestra_db" {
-  source                         = "../../../../modules/purge_kestra"
-  flow_id                        = "kestra_purge"
-  namespace                      = "prod.automation"
-  postgres_host                  = "34.41.114.214" # Cloud SQL: kestra-prod
-  postgres_password_secret       = ""
-  retention_months               = 2
-  secret_name_cloud_sql_password = "kestra-database-credentials"
+  source                   = "../../../../modules/purge_kestra"
+  flow_id                  = "kestra_purge"
+  namespace                = "prod.automation"
+  postgres_host            = "localhost" # Localhost as running in docker-compose
+  postgres_password_secret = "k3str4"    # See docker-compose.yml
+  retention_months         = 2
 }
