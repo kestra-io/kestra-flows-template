@@ -1,6 +1,6 @@
 # kestra-flows-template
 
-To develop and deploy Kestra [flows](https://kestra.io/docs/developer-guide/flow), we use [Terraform](https://developer.hashicorp.com/terraform/intro).
+To develop and deploy Kestra [flows](https://kestra.io/docs/workflow-components/flow), we use [Terraform](https://kestra.io/docs/terraform/guides/configurations).
 
 File structure follows :
 
@@ -26,10 +26,10 @@ File structure follows :
 
 ## Flow defintion
 
-- Each environment (i.e. development folder) is linked to a Kestra [namespace](https://kestra.io/docs/concepts/flows#namespace)
+- Each environment (i.e. development folder) is linked to a Kestra [namespace](https://kestra.io/docs/workflow-components/namespace)
   - we wrap flow definition in folders to separate use cases
   - each TF module created in an `environmnent` sub-folder is called in `main.tf` to be instanciated
-  - `triggers` are meant to be reusable to DRY our code. They should not be declared for a specific flow (except for [flow trigger](https://kestra.io/docs/developer-guide/triggers/flow))
+  - `triggers` are meant to be reusable to DRY our code. They should not be declared for a specific flow (except for [flow trigger](https://kestra.io/docs/workflow-components/triggers/flow-trigger))
 
 ## Environments
 
@@ -63,7 +63,7 @@ Currently there is no CI/CD.
 
 ## [CoreOps] - Module & subflows
 
-In order to provide modular dev experience, we leverage Terraform [modules](https://developer.hashicorp.com/terraform/language/modules/develop) and [subflow](https://kestra.io/docs/flow-examples/subflow) pattern.
+In order to provide modular dev experience, we leverage Terraform [modules](https://developer.hashicorp.com/terraform/language/modules/develop) and [subflow](https://kestra.io/docs/workflow-components/subflows) pattern.
 
 - `modules` are used as an abstraction layer for regular user to write workflows (i.e. triggering an Airbyte sync) without having to worry about Kestra syntax, authentication or connection details.
 
