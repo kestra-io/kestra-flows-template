@@ -8,7 +8,7 @@ tasks:
       - id: clone-repository
         type: io.kestra.plugin.git.Clone
         url: https://github.com/kestra-io/kestra-flows-template.git
-        branch: main
+        branch: master
 
       - id: variables
         type: io.kestra.core.tasks.storages.LocalFiles
