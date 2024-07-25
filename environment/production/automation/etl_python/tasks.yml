@@ -1,3 +1,5 @@
+disabled: false
+
 inputs:
   - id: columns_to_keep
     type: ARRAY
@@ -12,7 +14,8 @@ tasks:
     uri: https://dummyjson.com/products
 
   - id: transform
-    type: io.kestra.plugin.scripts.python.Commands
+    type: io.kestra.plugin.scripts.python.Script
+    # type: io.kestra.plugin.scripts.python.Commands
     docker:
       pullPolicy: IF_NOT_PRESENT
     containerImage: python:3.11-alpine
@@ -20,10 +23,12 @@ tasks:
       data.json: "{{ outputs.extract.uri }}"
     outputFiles:
       - "*.json"
-    namespaceFiles:
-      enabled: true
-    commands:
-      - python ${python-file-uri}
+    # commands:
+    #   - python ${python-file-uri}
+    # namespaceFiles:
+    #   enabled: true
+    script: |
+      ${indent(6, file("automation/etl_python/transform.py"))}
     env:
       COLUMNS_TO_KEEP: "{{ inputs.columns_to_keep }}"
 

@@ -1,6 +1,7 @@
 id: ${flow_id}
 namespace: ${namespace}
 description: "${description}"
+disabled: false
 
 tasks:
   - id: query_data
