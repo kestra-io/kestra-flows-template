@@ -1,6 +1,12 @@
 # Kestra Flow Factory with Terraform
 
-To develop and deploy Kestra [flows](https://kestra.io/docs/workflow-components/flow), we use [Terraform](https://kestra.io/docs/terraform/guides/configurations).
+To develop and deploy Kestra [flows](https://kestra.io/docs/workflow-components/flow), Kestra developers can use [Terraform](https://kestra.io/docs/terraform/guides/configurations).
+
+Doing so comes with great advantages:
+
+- Scale the codebase by using the [DRY best practices](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)
+- Manage multiple environments thanks to Terraform
+- Make reproducibility at the core of your Kestra development
 
 File structure follows :
 
