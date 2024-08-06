@@ -14,7 +14,7 @@ tasks:
     username: MY_USER
     password: "{{ secrets('my-postgres-password') }}"
     sql: "{{ inputs.sqlQuery }}"
-    fetch: true
+    store: true
 
   - id: show-result
     type: io.kestra.core.tasks.log.Log
