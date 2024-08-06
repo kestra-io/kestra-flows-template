@@ -30,5 +30,5 @@ tasks:
 # we expose the query result by using `outputs`
 outputs:
   - id: query_result
-    value: "{{ outputs.query_data.rows }}"
+    value: "{{ outputs.query_data.uri }}"
     type: JSON
