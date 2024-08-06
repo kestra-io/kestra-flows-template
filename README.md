@@ -1,4 +1,4 @@
-# kestra-flows-template
+# Kestra Flow Factory with Terraform
 
 To develop and deploy Kestra [flows](https://kestra.io/docs/workflow-components/flow), we use [Terraform](https://kestra.io/docs/terraform/guides/configurations).
 
