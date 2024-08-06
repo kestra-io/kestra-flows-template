@@ -11,7 +11,6 @@ resource "kestra_flow" "postgres_query" {
       postgres-database        = var.postgres_database
       postgres-secret-password = var.postgres_password_secret
       sql-query                = var.sql_query
-      show-result-in-logs      = var.show_result_in_logs
     }),
     var.trigger,
   ])

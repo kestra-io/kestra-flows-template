@@ -12,11 +12,6 @@ variable "postgres_host" {
   description = "Postgres Host"
 }
 
-variable "postgres_user" {
-  type        = string
-  description = "Postgres User"
-}
-
 variable "postgres_password_secret" {
   type        = string
   description = "Postgres Secret"

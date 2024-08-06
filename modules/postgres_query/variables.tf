@@ -35,12 +35,6 @@ variable "sql_query" {
   description = "SQL Query to perform purge"
 }
 
-variable "show_result_in_logs" {
-  type        = bool
-  description = "Log the result of the query"
-  default     = false
-}
-
 variable "trigger" {
   type        = string
   description = "String containing triggers sections of the flow"
