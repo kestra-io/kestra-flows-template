@@ -44,7 +44,7 @@ File structure follows :
 `development` allows you to test your flow before going in production. Make sure you are not working at the same time on it.
 
 `production` requires you to create a PR to validate your changes before being able to apply.
-
+> Note: Using namespaces to seperate environment within the same Kestra instance is not recommanded for production. You can read more about best practices for Kestra environment and deployment management [here](https://kestra.io/docs/best-practices/from-dev-to-prod)
 >TODO: improve developer experience if concurrent access. Not needed now. Secure `terraform apply` in production using CI/CD.
 
 ## FLow deployment
