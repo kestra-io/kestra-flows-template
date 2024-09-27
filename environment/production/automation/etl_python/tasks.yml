@@ -18,15 +18,13 @@ tasks:
     # type: io.kestra.plugin.scripts.python.Commands
     docker:
       pullPolicy: IF_NOT_PRESENT
+    taskRunner:
+      type: io.kestra.plugin.scripts.runner.docker.Docker
     containerImage: python:3.11-alpine
     inputFiles:
       data.json: "{{ outputs.extract.uri }}"
     outputFiles:
       - "*.json"
-    # commands:
-    #   - python ${python-file-uri}
-    # namespaceFiles:
-    #   enabled: true
     script: |
       ${indent(6, file("automation/etl_python/transform.py"))}
     env:

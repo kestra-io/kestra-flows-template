@@ -25,6 +25,8 @@ tasks:
         docker:
           image: hashicorp/terraform:1.6.0
           pullPolicy: IF_NOT_PRESENT
+        taskRunner:
+          type: io.kestra.plugin.scripts.runner.docker.Docker
         beforeCommands:
           - cd environment/production
           - terraform init
