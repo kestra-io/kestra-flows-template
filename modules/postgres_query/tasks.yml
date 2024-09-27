@@ -11,17 +11,3 @@ tasks:
     password: ${postgres-secret-password}
     sql: ${sql-query}
     fetch: true
-
-  - id: show-result
-    type: io.kestra.core.tasks.log.Log
-    message: >
-      {% if outputs.query_data.rows is defined %}
-        {% for row in outputs.query_data.rows %}
-          {%- for key in row.keySet() -%}
-            {{key}} : {{row.get(key)}} |
-          {%- endfor -%}
-          \n
-        {% endfor %}
-      {% else %}
-        No data to show
-      {% endif %}

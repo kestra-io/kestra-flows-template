@@ -16,16 +16,6 @@ tasks:
     sql: "{{ inputs.sqlQuery }}"
     store: true
 
-  - id: show-result
-    type: io.kestra.core.tasks.log.Log
-    message: |
-      {% for row in outputs.query_data.rows %}
-        {%- for key in row.keySet() -%}
-          {{key}} : {{row.get(key)}} |
-        {%- endfor -%}
-        \n
-      {% endfor %}"
-
 # To make it easier to use the results in another flow
 # we expose the query result by using `outputs`
 outputs:
