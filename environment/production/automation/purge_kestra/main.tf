@@ -13,4 +13,5 @@ module "purge_kestra_automation_namespace" {
   postgres_password_secret = "k3str4"        # See docker-compose.yml
   retention_months         = 2
   namespace_to_purge       = "prod.automation" # Namespace to purge
+  trigger                  = module.trigger_purge.trigger_content
 }
