@@ -1,5 +1,5 @@
 locals {
-  namespace_kestra   = "prod.dbt.kestra_example"
+  namespace_kestra   = "prod.dbt"
   dbt_profile_kestra = "my_dbt_project"
 }
 

@@ -1,5 +1,5 @@
 locals {
-  namespace_jaffle       = "prod.dbt.jaffle_shop"
+  namespace_jaffle       = "prod.dbt"
   dbt_profile_jaffle     = "jaffle_shop"
   github_repo_url_jaffle = "https://github.com/dbt-labs/jaffle_shop_duckdb.git"
 }
