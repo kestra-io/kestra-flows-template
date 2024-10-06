@@ -26,7 +26,7 @@ File structure follows :
     │   └── ...
     └── subflows/ # Kestra subflows
         ├── main.tf
-        ├── sub_cloud_sql_airbyte_query.yml
+        ├── sub_query_my_postgres_database.yml
         └── ...
 ```
 
