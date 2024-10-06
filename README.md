@@ -20,7 +20,7 @@ File structure follows :
     │   ├── dbt/
     │   ├── main.tf # Instanciate each folder (automation, dbt ...)
     │   └── ...
-    ├── modules/ # Terraform modules to be used in environments
+    ├── modules/ # Terraform modules to be used across environments
     │   ├── dbt_run/
     │   ├── postgres_query/
     │   └── ...
@@ -67,7 +67,7 @@ Currently there is no CI/CD.
     - Go on `main` branch
     - Run `terraform apply` to apply your changes
 
-## [CoreOps] - Module & subflows
+## Module & subflows
 
 In order to provide modular dev experience, we leverage Terraform [modules](https://developer.hashicorp.com/terraform/language/modules/develop) and [subflow](https://kestra.io/docs/workflow-components/subflows) pattern.
 
@@ -80,4 +80,5 @@ In order to provide modular dev experience, we leverage Terraform [modules](http
 
 # Useful links
 
-Kestra Developer [documentation](https://kestra.io/docs/developer-guide)
+- [Fundamentals](https://kestra.io/docs/tutorial/fundamentals)
+- [Leverage ​Terraform for flow modularity](https://kestra.io/docs/how-to-guides/terraform-templating)
