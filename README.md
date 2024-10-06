@@ -71,7 +71,7 @@ Currently there is no CI/CD.
 
 In order to provide modular dev experience, we leverage Terraform [modules](https://developer.hashicorp.com/terraform/language/modules/develop) and [subflow](https://kestra.io/docs/workflow-components/subflows) pattern.
 
-- `modules` are used as an abstraction layer for a whole use case (i.e. triggering an Airbyte sync and runnong dbt) without having to worry about Kestra syntax, authentication or connection details. It allows you to use all native Terraform features regarding input validation and passing from other ressources (i.e. DBT cloud job config Terraform resource outputs or Airbyte ones), outputs to seamlessly create dependencies between components etc.
+- `modules` are used as an abstraction layer for a whole use case (i.e. triggering an Airbyte sync and runnong dbt) without having to worry about Kestra syntax, authentication or connection details. It allows you to use all native Terraform features regarding input validation and passing from other ressources (i.e. DBT cloud job config Terraform resource outputs or Airbyte ones) outputs to seamlessly create dependencies between components etc.
 
 - `subflows` with terraform are best suited for generic and standalone tasks.
   - It contains direct YAML and are declared within [subflows/main.tf](subflows/main.tf) and define Inputs and Outputs clearly.

@@ -12,7 +12,7 @@ module "dbt_run_kestra_example" {
   github_repo_url = "https://github.com/kestra-io/dbt-example"
   git_branch      = "master"
   dbt_commands = [
-    " dbt deps",
+    "dbt deps",
     "dbt build",
   ]
   dbt_profile_name = local.dbt_profile_kestra
