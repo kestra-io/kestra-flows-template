@@ -12,4 +12,5 @@ module "purge_kestra_db" {
   postgres_host            = "postgres:5432" # Localhost as running in docker-compose
   postgres_password_secret = "k3str4"        # See docker-compose.yml
   retention_months         = 2
+  namespace_to_purge       = "prod.automation" # Namespace to purge
 }

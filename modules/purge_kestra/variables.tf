@@ -17,6 +17,11 @@ variable "postgres_password_secret" {
   description = "Postgres Secret"
 }
 
+variable "namespace_to_purge" {
+  type        = string
+  description = "Namespace to purge"
+}
+
 variable "retention_months" {
   type        = number
   description = "Number of months to keep logs"
