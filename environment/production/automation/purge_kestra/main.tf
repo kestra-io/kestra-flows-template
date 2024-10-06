@@ -5,8 +5,8 @@ module "trigger_purge" {
   late_maximum_delay = "PT1H"
 }
 
-module "purge_kestra_db" {
-  source                   = "../../../../modules/purge_kestra"
+module "purge_kestra_automation_namespace" {
+  source                   = "../../../../modules/purge_kestra_namespace"
   flow_id                  = "kestra_purge"
   namespace                = "prod.automation"
   postgres_host            = "postgres:5432" # Localhost as running in docker-compose

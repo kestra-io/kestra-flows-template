@@ -3,6 +3,13 @@ locals {
   dbt_profile_kestra = "my_dbt_project"
 }
 
+module "trigger_dbt_run_kestra_example" {
+  source             = "../../../modules/trigger_cron"
+  cron_name          = "trigger_kestra_example_every_hour"
+  cron_expression    = "0 * * * *" # Run every hour
+  late_maximum_delay = "PT1H"
+}
+
 module "dbt_run_kestra_example" {
   source          = "../../../modules/dbt_run"
   flow_id         = "dbt_run_kestra_example"
@@ -16,5 +23,5 @@ module "dbt_run_kestra_example" {
     "dbt build",
   ]
   dbt_profile_name = local.dbt_profile_kestra
-  trigger          = module.trigger_dbt_run_jaffle_shop_orders.trigger_content
+  trigger          = module.trigger_dbt_run_kestra_example.trigger_content
 }
