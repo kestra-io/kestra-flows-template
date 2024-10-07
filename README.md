@@ -49,8 +49,6 @@ File structure follows :
 
 ## FLow deployment
 
-Currently there is no CI/CD.
-
 1. Before creating your PR
 
     To ensure your changes are correct and check how it impacts current state, run in `environment` :
@@ -59,13 +57,11 @@ Currently there is no CI/CD.
 
 2. Create your PR : fill the pull_request template
 
-    - Copy paste the `terraform plan` or directly join the output file generated using `terraform plan -no-color > my_pr.txt`.
-
 3. **When PR has been reviewed and accepted**
 
     - Merge your PR
     - Go on `main` branch
-    - Run `terraform apply` to apply your changes
+    - Run `terraform apply` with the `terraform_apply` Kestra flow to apply your changes
 
 ## Module & subflows
 
