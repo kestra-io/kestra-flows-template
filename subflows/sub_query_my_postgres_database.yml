@@ -1,0 +1,24 @@
+id: query_my_postgres_database
+namespace: company.team
+description: "Query Postgres database and display results in logs"
+
+inputs:
+  - id: sqlQuery
+    type: STRING
+    defaults: "SELECT * FROM public.jobs ORDER BY created_at desc limit 1" # SQL query example
+
+tasks:
+  - id: query_data
+    type: io.kestra.plugin.jdbc.postgresql.Query
+    url: jdbc:postgresql://MY_HOST/MY_DATABASE
+    username: MY_USER
+    password: "{{ secrets('my-postgres-password') }}"
+    sql: "{{ inputs.sqlQuery }}"
+    store: true
+
+# To make it easier to use the results in another flow
+# we expose the query result by using `outputs`
+outputs:
+  - id: query_result
+    value: "{{ outputs.query_data.uri }}"
+    type: JSON

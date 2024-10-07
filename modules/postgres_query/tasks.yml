@@ -1,24 +1,13 @@
 id: ${flow_id}
 namespace: ${namespace}
 description: "${description}"
+disabled: false
 
 tasks:
   - id: query_data
     type: io.kestra.plugin.jdbc.postgresql.Query
     url: jdbc:postgresql://${postgres-host}/${postgres-database}
     username: ${postgres-user}
-    password: ${postgres-secret-password}}
+    password: ${postgres-secret-password}
     sql: ${sql-query}
     fetch: true
-
-{% if outputs.query_data.rows.size() > 0 %}
-  - id: show-result
-    type: io.kestra.core.tasks.log.Log
-    message: >
-      {% for row in outputs.query_data.rows %}
-        {%- for key in row.keySet() -%}
-          {{key}} : {{row.get(key)}} |
-        {%- endfor -%}
-        \n
-      {% endfor %}"
-{% endif %}

@@ -12,14 +12,14 @@ variable "postgres_host" {
   description = "Postgres Host"
 }
 
-variable "postgres_user" {
-  type        = string
-  description = "Postgres User"
-}
-
 variable "postgres_password_secret" {
   type        = string
   description = "Postgres Secret"
+}
+
+variable "namespace_to_purge" {
+  type        = string
+  description = "Namespace to purge"
 }
 
 variable "retention_months" {

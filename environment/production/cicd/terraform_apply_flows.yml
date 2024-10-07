@@ -8,7 +8,7 @@ tasks:
       - id: clone-repository
         type: io.kestra.plugin.git.Clone
         url: https://github.com/kestra-io/kestra-flows-template.git
-        branch: main
+        branch: master
 
       - id: variables
         type: io.kestra.core.tasks.storages.LocalFiles
@@ -25,6 +25,8 @@ tasks:
         docker:
           image: hashicorp/terraform:1.6.0
           pullPolicy: IF_NOT_PRESENT
+        taskRunner:
+          type: io.kestra.plugin.scripts.runner.docker.Docker
         beforeCommands:
           - cd environment/production
           - terraform init
