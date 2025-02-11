@@ -1,6 +1,3 @@
-description: ${description}
-disabled: false
-
 %{ if length(labels) > 0 }
 labels:
 %{ for key, value in labels }
@@ -12,7 +9,6 @@ labels:
 tasks:
   - id: dbt
     type: io.kestra.plugin.core.flow.WorkingDirectory
-
     tasks:
       - id: clone_repository
         type: io.kestra.plugin.git.Clone
